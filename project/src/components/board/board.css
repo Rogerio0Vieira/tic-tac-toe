@@ -1,0 +1,10 @@
+.board {
+  display: flex;
+  width: 338px;
+  flex-wrap: wrap;
+  margin: 10px;
+}
+
+.board.gameOver{
+  opacity: 0.3;
+}

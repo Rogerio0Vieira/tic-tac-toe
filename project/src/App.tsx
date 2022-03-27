@@ -1,9 +1,14 @@
 import { useState, useEffect } from 'react'
 import logo from './logo.svg'
 import './App.css'
+import {Container} from './components/container/Container'
+import {Players} from './models/playerType'
+import { Winner } from './components/winner/Winner'
+import { Draw } from './components/draw/Draw'
+import { PlayAgain } from './components/playagain/PlayAgain'
+import { TurnOf } from './components/turnof/TurnOf'
+import { Board } from './components/board/Board'
 
-//Tipo dos Players
-type Players = "O" | "X";
 
 function App() {
 
@@ -74,21 +79,20 @@ function App() {
   }, [marks])
 
   return (
-    <div className="container">
-      {winner && <h1>"{winner}" Ganhou!</h1> } 
-      {draw && <h1>Empate</h1>}
-      {gameOver && <button className="" onClick={reset}>Jogar novamente</button>}
-      {!gameOver && <p>É a vez de {turn}</p>}
-      
-      <div className={`board ${gameOver ? "gameOver" : null}`}>
-        {getSquares().map((_, i) => (
+    <Container>
+      {winner && <Winner>"{winner}" Ganhou!</Winner>}
+      {draw && <Draw>Empate!</Draw>}
+      {gameOver && <PlayAgain props={reset}>Jogar novamente</PlayAgain>}
+      {!gameOver && <TurnOf>{turn}</TurnOf>}
+
+      <Board props={`board ${gameOver ? "gameOver" : null}`}>
+      {getSquares().map((_, i) => (
           <div className={`cell ${getCellPlayer(i)}`} onClick={() => play(i)}>
             {marks[i]}
           </div>
         ))}
-      </div>
-
-    </div>
+      </Board>
+    </Container>
   )
 }
 
