@@ -1,8 +1,8 @@
 button{
   border: 1px solid #000;
   border-radius: 10px;
-  width: 6%;
-  height: 3%;
   background-color: #1E90FF;
   color: white;
+  width: 125px;
+  height: 30px;
 }
